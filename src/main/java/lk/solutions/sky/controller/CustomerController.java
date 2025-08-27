@@ -1,5 +1,8 @@
 package lk.solutions.sky.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lk.solutions.sky.entity.Customer;
 import lk.solutions.sky.service.CustomerService;
 import org.apache.coyote.BadRequestException;
@@ -17,6 +20,11 @@ public class CustomerController {
     @Autowired
     public CustomerService customerService;
 
+    @Operation(summary = "Get User By ID", description = "Return Single User on their ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved user"),
+            @ApiResponse(responseCode = "400", description = "Bad Request for User")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Customer> findById(@PathVariable("id") Long id) throws BadRequestException {
         return ResponseEntity.ok(customerService.findById(id));
