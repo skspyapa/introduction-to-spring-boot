@@ -18,17 +18,29 @@ import static org.mockito.Mockito.when;
 public class CustomerControllerMockitoTest {
 
     @Mock
+    /*
+    * @Mock
+    * Creates a mock object of a class/interface.
+    * The mock is a fake object that you control with when(...).thenReturn(...).
+    * It does not run real logic, it only returns what you configure.
+    */
     private CustomerService customerService;
 
     @InjectMocks
+    /*
+    * @InjectMocks
+    * Creates a real object of the class under test.
+    * Injects the mocks (created with @Mock) into it automatically.
+    * Works by constructor injection, setter injection, or field injection.
+    */
     private CustomerController customerController;
 
     @Test
     void findById() throws BadRequestException {
         Customer customer =  new Customer(1L, "John", "Doe");
-        when(customerService.findById(1)).thenReturn(customer);
+        when(customerService.findById(1L)).thenReturn(customer);
 
-        ResponseEntity<Customer> response = customerController.findById(1);
+        ResponseEntity<Customer> response = customerController.findById(1L);
         assertEquals(200, response.getStatusCode().value());
         Assertions.assertNotNull(response.getBody());
         assertEquals("John", response.getBody().getFirstName());

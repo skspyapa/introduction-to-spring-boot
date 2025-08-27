@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerController {
 
     @Autowired
-    private CustomerService customerService;
+    public CustomerService customerService;
+
     @GetMapping("/{id}")
-    public ResponseEntity<Customer> findById(@PathVariable("id") Integer id) throws BadRequestException {
+    public ResponseEntity<Customer> findById(@PathVariable("id") Long id) throws BadRequestException {
         return ResponseEntity.ok(customerService.findById(id));
     }
 }

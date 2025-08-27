@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
-    public Customer findById(int id) throws BadRequestException {
+    public Customer findById(Long id) throws BadRequestException {
         return customerRepository.findById(id).orElseThrow(BadRequestException::new);
     }
 }
