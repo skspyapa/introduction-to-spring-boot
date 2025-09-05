@@ -22,7 +22,7 @@ public class CustomerController {
     @Operation(summary = "Get User By ID", description = "Return Single User on their ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved user"),
-            @ApiResponse(responseCode = "400", description = "Bad Request for User")
+            @ApiResponse(responseCode = "404", description = "User Not Found")
     })
     @GetMapping("/{id}")
     public ResponseEntity<Customer> findById(@PathVariable("id") Long id) {
